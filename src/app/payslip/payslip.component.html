@@ -1,0 +1,44 @@
+<section>
+    <header>
+        <h2>Payslip</h2>
+        <h3>{{employee.firstname}} {{employee.lastname}}</h3>
+    </header>
+
+    <table class="table table-striped">
+      <tbody>
+        <tr>
+          <th scope="row">Pay Date</th>
+          <td>{{payslip.payPeriod}}</td>
+        </tr>
+        <tr>
+          <th scope="row">Pay Frequency</th>
+          <td>{{payslip.payFrequency}}</td>
+        </tr>
+        <tr>
+          <th scope="row">Annual Income</th>
+          <td>{{employee.annualSalary | currency:'AUD':true}}</td>
+        </tr>
+        <tr>
+          <th scope="row">Gross Income</th>
+          <td>{{payslip.grossIncome | currency:'AUD':true}}</td>
+        </tr>
+        <tr>
+          <th scope="row">Income Tax</th>
+          <td>{{payslip.incomeTax | currency:'AUD':true}}</td>
+        </tr>
+        <tr>
+          <th scope="row">Net Income</th>
+          <td>{{payslip.netIncome | currency:'AUD':true}}</td>
+        </tr>
+        <tr>
+          <th scope="row">Super</th>
+          <td>{{payslip.superAmt | currency:'AUD':true}}</td>
+        </tr>
+
+        <tr>
+          <th scope="row">Pay</th>
+          <td>{{payslip.pay | currency:'AUD':true}}</td>
+        </tr>
+      </tbody>
+    </table>
+</section>

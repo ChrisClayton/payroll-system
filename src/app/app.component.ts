@@ -8,7 +8,7 @@ import { Payslip } from './shared/payslip';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'app works!';
+  title = 'Payroll App!';
   employee: Employee;
   payslip: Payslip;
 
