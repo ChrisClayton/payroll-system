@@ -1,7 +1,7 @@
 <section>
     <header>
         <h2>Payslip</h2>
-        <h3>{{employee.firstname}} {{employee.lastname}}</h3>
+        <h3>{{payslip.employee.firstname}} {{payslip.employee.lastname}}</h3>
     </header>
 
     <table class="table table-striped">
@@ -16,7 +16,7 @@
         </tr>
         <tr>
           <th scope="row">Annual Income</th>
-          <td>{{employee.annualSalary | currency:'AUD':true}}</td>
+          <td>{{payslip.employee.annualSalary | currency:'AUD':true}}</td>
         </tr>
         <tr>
           <th scope="row">Gross Income</th>
@@ -32,7 +32,7 @@
         </tr>
         <tr>
           <th scope="row">Super</th>
-          <td>{{payslip.superAmt | currency:'AUD':true}}</td>
+          <td>{{payslip.superannuation | currency:'AUD':true}}</td>
         </tr>
 
         <tr>

@@ -4,8 +4,7 @@ import { Payslip } from './shared/payslip';
 
 @Component({
   selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  templateUrl: './app.component.html'
 })
 export class AppComponent {
   title = 'Payroll App!';
@@ -15,7 +14,5 @@ export class AppComponent {
   constructor() {
       this.employee = new Employee(1, "John","Smith",60050,9);
       this.payslip = new Payslip(this.employee, '01 March – 31 March');
-
-      console.log(this.payslip);
   }
 }

@@ -1,6 +1,10 @@
 import { Employee } from './employee';
 
+import { Utils } from './utils/utils';
+
 export class Payslip {
+  utils: Utils = new Utils();
+
   constructor(
     public employee: Employee,
     public payPeriod: string,
@@ -8,20 +12,20 @@ export class Payslip {
     public grossIncome?: number,
     public incomeTax?: number,
     public netIncome?: number,
-    public superAmt?: number,
+    public superannuation?: number,
     public pay?: number
   ) {
       this.init();
   }
 
   init() {
-      this.payFrequency = this.generateFrequency();
-      this.grossIncome = this.calculateGrossIncome();
-      this.incomeTax = this.calculateIncomeTax();
-      this.netIncome = this.calculateNetIncome();
-      this.superAmt = this.calculateSuper();
+    this.payFrequency = this.generateFrequency();
+    this.grossIncome = this.calculateGrossIncome();
+    this.incomeTax = this.calculateIncomeTax();
+    this.netIncome = this.calculateNetIncome();
+    this.superannuation = this.calculateSuper();
 
-      this.pay = this.calculatePay();
+    this.pay = this.calculatePay();
   }
 
   // todo: Generate pay frequency from pay period.
@@ -29,50 +33,32 @@ export class Payslip {
       // todo [.1]: check length of payPeriod
       //if (payPeriod === 1 month) {}
       return "Monthly"
-      // }
-      // todo [.2]: Weekly frequency?
-      // todo [.3]: else return "CASUAL" ??
   }
 
   calculateGrossIncome() {
-      return Math.round((this.employee.annualSalary / 12));
+      return this.utils.round((this.employee.annualSalary / 12));
   }
 
+  getYearlyTax(salary, taxBracket, taxRate, flatTax) {
+    var taxableIncome = (salary - taxBracket);
+    var taxForBracket = taxableIncome * taxRate;
+    return flatTax + taxForBracket;
+  }
+  
   calculateIncomeTax() {
       let annualSalary = this.employee.annualSalary;
-      let tax = null;
 
-      switch(true) {
-          case (annualSalary > 0 && annualSalary < 18200):
-              tax = 0;
-              break;
-          case (annualSalary > 18201 && annualSalary < 3700):
-              tax = ((annualSalary - 18200) * 0.19)/12;
-              break;
-           case(annualSalary > 37001 && annualSalary < 80000):
-               tax = (3572 + (annualSalary - 37000) * 0.325) / 12;
-               break;
-           case(annualSalary > 80001 && annualSalary < 180000):
-               tax = (17547 + (annualSalary - 80000) * 0.37) / 12;
-               break;
-            case(annualSalary > 180000):
-                tax = (54547 + (annualSalary - 180000) * 0.45) / 12;
-                break;
-          default:
-                console.log("ERROR");
-                tax = null;
-      }
-
-      return Math.round(tax);
+      var taxInfo = this.utils.getTaxInfo(annualSalary);
+      return this.utils.round(this.getYearlyTax(annualSalary, taxInfo.bracket, taxInfo.rate, taxInfo.flatTax) / 12);
   }
 
   calculateNetIncome() {
-      return Math.round(this.grossIncome-this.incomeTax);
+      return this.utils.round(this.grossIncome - this.incomeTax);
   }
   calculateSuper() {
-      return Math.round(this.grossIncome * (this.employee.superRate / 100));
+      return this.utils.round(this.grossIncome * (this.employee.superRate / 100));
   }
   calculatePay() {
-      return Math.round(this.netIncome - this.superAmt);
+      return this.utils.round(this.netIncome - this.superannuation);
   }
 }

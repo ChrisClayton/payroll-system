@@ -1,18 +1,17 @@
 import { Component, OnInit, Input } from '@angular/core';
 
+import { Payslip } from '../shared/payslip';
+
 @Component({
   selector: 'app-payslip',
-  templateUrl: './payslip.component.html',
-  styleUrls: ['./payslip.component.css']
+  templateUrl: './payslip.component.html'
 })
 export class PayslipComponent implements OnInit {
-  @Input() payslip: any;
-  public employee: any;
+  @Input() payslip: Payslip;
 
   constructor() { }
 
   ngOnInit() {
-      this.employee = this.payslip.employee;
   }
 
 }
