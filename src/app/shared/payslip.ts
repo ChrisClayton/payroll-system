@@ -56,7 +56,7 @@ export class Payslip {
       return this.utils.round(this.grossIncome - this.incomeTax);
   }
   calculateSuper() {
-      return this.utils.round(this.grossIncome * (this.employee.superRate / 100));
+      return this.utils.round(this.grossIncome * (this.employee.superannuation / 100));
   }
   calculatePay() {
       return this.utils.round(this.netIncome - this.superannuation);

@@ -1,0 +1,45 @@
+<section>
+    <header>
+      <h2>employee-info</h2>
+    </header>
+
+    <form [formGroup]="form" (ngSubmit)="formOnSubmit(form.value)" >
+    <!-- [formGroup]="form" -->
+     <div class="form-inline">
+         <div class="form-group">
+            <label class="sr-only" for="employeeInputFirstName">First Name</label>
+            <input type="text" class="form-control" id="employeeInputFirstName" placeholder="Firstname" [formControl]="form.controls['firstName']">
+          </div>
+          <div class="form-group">
+            <label class="sr-only" for="employeeInputLastName">Last Name</label>
+            <input type="text" class="form-control" id="employeeInputLastName" placeholder="Last Name" [formControl]="form.controls['lastName']">
+          </div>
+     </div>
+
+     <div class="form-inline">
+          <div class="form-group">
+            <label class="sr-only" for="employeeInputSalary">Annual Salary</label>
+            <div class="input-group">
+              <div class="input-group-addon">$</div>
+              <input type="text" class="form-control" id="employeeInputSalary" placeholder="Annual Salary" [formControl]="form.controls['annualSalary']">
+              <div class="input-group-addon">.00</div>
+            </div>
+          </div>
+
+
+          <div class="form-group">
+            <label class="sr-only" for="employeeInputSuper">Super Rate</label>
+            <div class="input-group">
+              <input type="text" class="form-control" id="employeeInputSuper" placeholder="Super Rate" [formControl]="form.controls['superannuation']">
+              <div class="input-group-addon">%</div>
+            </div>
+          </div>
+     </div>
+
+      <button type="submit" class="btn btn-primary" [disabled]="!form.valid">Generate Payslip</button>
+
+      <output *ngIf="employee" class="form-row">
+          <strong>Saved the following values</strong><br>{{employee | json}}
+    </output>
+  </form>
+</section>

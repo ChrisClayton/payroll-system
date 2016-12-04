@@ -4,6 +4,6 @@ export class Employee {
     public firstname: string,
     public lastname: string,
     public annualSalary: number,
-    public superRate?: number
+    public superannuation?: number
   ) {  }
 }

@@ -12,7 +12,11 @@ export class AppComponent {
   payslip: Payslip;
 
   constructor() {
-      this.employee = new Employee(1, "John","Smith",60050,9);
+      // this.employee = new Employee(1, "John","Smith",60050,9);
+  }
+
+  employeeOnSubmit(employee: Employee) {
+      this.employee = employee;
       this.payslip = new Payslip(this.employee, '01 March – 31 March');
   }
 }

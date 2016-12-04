@@ -3,5 +3,6 @@
         <h1>{{title}}</h1>
     </header>
 
-    <app-payslip [payslip]="payslip"></app-payslip>
+    <app-employee-info *ngIf="!employee" [employee]="employee" (onSubmit)="employeeOnSubmit($event)"></app-employee-info>
+    <app-payslip *ngIf="employee" [payslip]="payslip" [employee]="employee"></app-payslip>
 </section>
